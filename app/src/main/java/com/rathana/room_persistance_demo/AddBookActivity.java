@@ -1,5 +1,7 @@
 package com.rathana.room_persistance_demo;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,7 @@ public class AddBookActivity extends AppCompatActivity {
     Button btnSave,btnGetBook;
 
     BookDatabase bookDatabase;
+    FloatingActionButton btnBookList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +33,11 @@ public class AddBookActivity extends AppCompatActivity {
         etDate=findViewById(R.id.etDate);
         etPrice=findViewById(R.id.etPrice);
         btnSave=findViewById(R.id.btnSave);
-
+        btnBookList=findViewById(R.id.btnBookList);
         btnGetBook=findViewById(R.id.btnGetBook);
         //init object book database
         bookDatabase=BookDatabase.getInstance(this);
+
 
         btnSave.setOnClickListener(v->{
             Book book=new Book();
@@ -50,6 +54,10 @@ public class AddBookActivity extends AppCompatActivity {
 
         btnGetBook.setOnClickListener(v->{
             getBookList();
+        });
+        btnBookList.setOnClickListener(v->{
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
         });
 
     }
